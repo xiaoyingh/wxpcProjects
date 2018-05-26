@@ -1,0 +1,189 @@
+Table: history_dialogue
+-------------+---------------+------+-----+-------------------+---------
+ Field       | Type          | Null | Key | Default           | Remarks 
+-------------+---------------+------+-----+-------------------+---------
+ id          | INT(10)       | NO   | PRI |                   |         
+ user_id     | INT(10)       | YES  |     |                   |         
+ dtype       | INT(10)       | YES  |     |                   | 1单聊 2 群聊
+ group_id    | INT(10)       | YES  |     |                   | 群id     
+ to_user_id  | INT(10)       | YES  |     |                   |         
+ status      | INT(10)       | YES  |     |                   | 1有效     0无效 （如果注销号，此表信息也删除）
+ create_time | TIMESTAMP(19) | YES  |     | CURRENT_TIMESTAMP |         
+-------------+---------------+------+-----+-------------------+---------
+
+Table: im_action_plan
+---------+---------------+------+-----+-------------------+---------
+ Field   | Type          | Null | Key | Default           | Remarks 
+---------+---------------+------+-----+-------------------+---------
+ id      | INT(10)       | NO   | PRI |                   |         
+ uid     | VARCHAR(255)  | YES  |     |                   | 发布者uid  
+ type    | TINYINT(3)    | YES  |     |                   | 1 文本 2 图片 3视频 4文件
+ title   | VARCHAR(255)  | YES  |     |                   |         
+ content | VARCHAR(255)  | YES  |     |                   |         
+ url     | VARCHAR(255)  | YES  |     |                   |         
+ toUser  | VARCHAR(255)  | YES  |     |                   | 需要接受的用户，多个用户用逗号隔开
+ time    | TIMESTAMP(19) | YES  |     | CURRENT_TIMESTAMP |         
+---------+---------------+------+-----+-------------------+---------
+
+Table: im_file_mange
+--------------+---------------+------+-----+-------------------+---------
+ Field        | Type          | Null | Key | Default           | Remarks 
+--------------+---------------+------+-----+-------------------+---------
+ id           | INT(10)       | NO   | PRI |                   |         
+ name         | VARCHAR(255)  | YES  |     |                   | 文件名     
+ url          | VARCHAR(255)  | YES  |     |                   |         
+ type         | INT(10)       | YES  |     |                   | 文件类型：1.doc 2.docx 3.xlsx 4 xls 5pdf 6rar 7zip 8txt  9其他
+ size         | DOUBLE(22)    | YES  |     |                   | 文件大小 单位KB
+ from_user_id | VARCHAR(255)  | YES  |     |                   | 文件发送者   
+ to_user_id   | VARCHAR(255)  | YES  |     |                   | 文件接收者   
+ time         | TIMESTAMP(19) | YES  |     | CURRENT_TIMESTAMP |         
+--------------+---------------+------+-----+-------------------+---------
+
+Table: im_history_message
+--------------+---------------+------+-----+-------------------+---------
+ Field        | Type          | Null | Key | Default           | Remarks 
+--------------+---------------+------+-----+-------------------+---------
+ id           | INT(10)       | NO   | PRI |                   |         
+ fingerPrint  | VARCHAR(150)  | NO   | PRI |                   | 指纹码，保证消息唯一避免重复
+ from_user_id | VARCHAR(11)   | YES  |     |                   | 来源用户id  
+ to_user_id   | VARCHAR(11)   | YES  |     |                   | 接收者id   
+ content      | TEXT(65535)   | YES  |     |                   |         
+ c_type       | INT(10)       | YES  |     |                   | 聊天类型：1单聊 ， 2群聊
+ utype        | INT(10)       | YES  |     |                   | 聊天内容类型：单聊：1文本  2.图片 3.语音 4.视频 5 文件
+ send_status  | INT(10)       | YES  |     |                   | 1离线消息，0历史消息
+ status       | INT(10)       | YES  |     |                   | 1有效     0无效
+ send_time    | TIMESTAMP(19) | YES  |     |                   |         
+ create_time  | TIMESTAMP(19) | YES  |     | CURRENT_TIMESTAMP |         
+--------------+---------------+------+-----+-------------------+---------
+
+Table: im_inform
+---------+---------------+------+-----+-------------------+---------
+ Field   | Type          | Null | Key | Default           | Remarks 
+---------+---------------+------+-----+-------------------+---------
+ id      | INT(10)       | NO   | PRI |                   |         
+ uid     | VARCHAR(255)  | YES  |     |                   | 发布者uid  
+ type    | TINYINT(3)    | YES  |     |                   | 1 文本 2 图片 3视频 4文件
+ title   | VARCHAR(255)  | YES  |     |                   |         
+ content | VARCHAR(255)  | YES  |     |                   |         
+ url     | VARCHAR(255)  | YES  |     |                   |         
+ toUser  | VARCHAR(255)  | YES  |     |                   | 需要接受的用户，多个用户用逗号隔开
+ time    | TIMESTAMP(19) | YES  |     | CURRENT_TIMESTAMP |         
+---------+---------------+------+-----+-------------------+---------
+
+Table: im_offline_message
+--------------+---------------+------+-----+-------------------+---------
+ Field        | Type          | Null | Key | Default           | Remarks 
+--------------+---------------+------+-----+-------------------+---------
+ id           | INT(10)       | NO   | PRI |                   |         
+ group_id     | INT(10)       | YES  |     |                   | 群id ，如果不是群消息则 -1
+ from_user_id | INT(10)       | YES  |     |                   |         
+ to_user_id   | INT(10)       | YES  |     |                   |         
+ content      | TEXT(65535)   | YES  |     |                   |         
+ utype        | INT(10)       | YES  |     |                   | 1文本  2.图片 3.语音 4.视频 5 文件
+ status       | INT(10)       | YES  |     |                   | 1有效     0无效
+ send_time    | TIMESTAMP(19) | YES  |     |                   | 发送时间    
+ create_time  | TIMESTAMP(19) | YES  |     | CURRENT_TIMESTAMP |         
+--------------+---------------+------+-----+-------------------+---------
+
+Table: manage_depart
+----------+--------------+------+-----+---------+---------
+ Field    | Type         | Null | Key | Default | Remarks 
+----------+--------------+------+-----+---------+---------
+ dep_id   | INT(10)      | NO   | PRI |         | 自增id    
+ dep_name | VARCHAR(255) | YES  |     |         | 部门名称    
+----------+--------------+------+-----+---------+---------
+
+Table: manage_group
+-------------+---------------+------+-----+-------------------+---------
+ Field       | Type          | Null | Key | Default           | Remarks 
+-------------+---------------+------+-----+-------------------+---------
+ group_id    | INT(10)       | NO   | PRI |                   |         
+ group_name  | VARCHAR(255)  | NO   |     |                   | 群名      
+ icon        | VARCHAR(100)  | YES  |     |                   | 图标      
+ create_time | TIMESTAMP(19) | YES  |     | CURRENT_TIMESTAMP | 创建日期    
+ status      | INT(10)       | YES  |     | 0                 | 状态：200有效 0未成功 1解散
+ group_type  | INT(10)       | YES  |     | 1                 | 群类别  0中央控制中心 1普通聊天群
+ breaker     | VARCHAR(50)   | YES  |     |                   | 解散者     
+-------------+---------------+------+-----+-------------------+---------
+
+Table: manage_group_user_task_rel
+-----------+----------------------+------+-----+-------------------+---------
+ Field     | Type                 | Null | Key | Default           | Remarks 
+-----------+----------------------+------+-----+-------------------+---------
+ id        | INT(10)              | NO   | PRI |                   | 自增id    
+ group_id  | INT(10)              | NO   |     |                   | 群组id    
+ user_id   | INT(10)              | NO   |     |                   | 用户id    
+ user_type | INT(10)              | YES  |     |                   | 用户类型：1群主 2群成员
+ task_id   | INT(10)              | YES  |     |                   | 任务id    
+ content   | LONGTEXT(2147483647) | YES  |     |                   | 聊天内容    
+ pubtime   | DATETIME(19)         | YES  |     | CURRENT_TIMESTAMP | 发布时间    
+-----------+----------------------+------+-----+-------------------+---------
+
+Table: manage_inform_back_rel
+--------------+---------------+------+-----+-------------------+---------
+ Field        | Type          | Null | Key | Default           | Remarks 
+--------------+---------------+------+-----+-------------------+---------
+ id           | INT(10)       | NO   | PRI |                   |         
+ inform_id    | INT(10)       | YES  |     |                   | 通知id    
+ back_user_id | INT(10)       | YES  |     |                   | 回复信息用户id
+ back_content | TEXT(65535)   | YES  |     |                   | 回复内容    
+ create_time  | TIMESTAMP(19) | YES  |     | CURRENT_TIMESTAMP | 创建日期    
+--------------+---------------+------+-----+-------------------+---------
+
+Table: manage_perm
+-----------+--------------+------+-----+---------+---------
+ Field     | Type         | Null | Key | Default | Remarks 
+-----------+--------------+------+-----+---------+---------
+ perm_id   | INT(10)      | NO   | PRI |         | 自增id    
+ perm_path | VARCHAR(100) | YES  |     |         |         
+ perm_name | VARCHAR(100) | YES  |     |         |         
+ icon      | VARCHAR(100) | YES  |     |         | 图标      
+ status    | TINYINT(3)   | NO   |     | 1       | 是否启用： 1，是；-1，否
+-----------+--------------+------+-----+---------+---------
+
+Table: manage_role
+-----------+--------------+------+-----+---------+---------
+ Field     | Type         | Null | Key | Default | Remarks 
+-----------+--------------+------+-----+---------+---------
+ role_id   | INT(10)      | NO   | PRI |         | 自增id    
+ role_name | VARCHAR(255) | YES  |     |         | 角色名称    
+-----------+--------------+------+-----+---------+---------
+
+Table: manage_role_perm_rel
+---------+---------+------+-----+---------+---------
+ Field   | Type    | Null | Key | Default | Remarks 
+---------+---------+------+-----+---------+---------
+ role_id | INT(10) | NO   | PRI |         | 角色id    
+ perm_id | INT(10) | NO   | PRI |         | 权限id    
+---------+---------+------+-----+---------+---------
+
+Table: manage_role_user_rel
+---------+---------+------+-----+---------+---------
+ Field   | Type    | Null | Key | Default | Remarks 
+---------+---------+------+-----+---------+---------
+ role_id | INT(10) | NO   | PRI |         | 角色id    
+ user_id | INT(10) | NO   | PRI |         | 用户id    
+---------+---------+------+-----+---------+---------
+
+Table: manage_user_info
+-------------+---------------+------+-----+-------------------+---------
+ Field       | Type          | Null | Key | Default           | Remarks 
+-------------+---------------+------+-----+-------------------+---------
+ user_id     | INT(10)       | NO   | PRI |                   |         
+ user_name   | VARCHAR(255)  | NO   | PRI |                   | 用户名     
+ password    | VARCHAR(255)  | NO   | PRI |                   | 密码      
+ nick_name   | VARCHAR(100)  | YES  |     |                   | 昵称      
+ icon        | VARCHAR(100)  | YES  |     |                   | 图标      
+ media_id    | INT(10)       | YES  |     |                   | 账户所属的媒体 
+ dep_id      | INT(10)       | YES  |     |                   | 账户所属的部门 
+ email       | VARCHAR(100)  | YES  |     |                   | 邮箱      
+ tel         | VARCHAR(50)   | YES  |     |                   | 电话      
+ create_time | TIMESTAMP(19) | YES  |     | CURRENT_TIMESTAMP | 创建日期    
+ status      | INT(10)       | YES  |     | 1                 | 状态：0，无效；1，有效
+ token       | VARCHAR(300)  | YES  |     |                   |         
+ longitude   | DOUBLE(22)    | YES  |     | 0                 | 经度      
+ latitude    | DOUBLE(22)    | YES  |     | 0                 | 纬度      
+ pushToken   | VARCHAR(300)  | YES  |     |                   |         
+ update_time | DATETIME(19)  | YES  |     |                   |         
+-------------+---------------+------+-----+-------------------+---------
+

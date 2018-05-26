@@ -1,0 +1,1673 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>网络应急传输系统</title>
+<link rel="icon" href="images/favicon.ico" type="images/favicon" />
+<link rel="shortcut icon" href="images/favicon.ico" type="images/favicon" />
+<link rel="bookmark" href="images/favicon.ico" type="images/favicon" />
+
+	<link rel="stylesheet" type="text/css" href="comment/bootstrap.min.css">
+	<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/public.css">
+	<link rel="stylesheet" type="text/css" href="css/qq.css">
+	<link rel="stylesheet" type="text/css" href="css/home.css">
+	<link rel="stylesheet" type="text/css" href="css/sort.css">
+	<link rel="stylesheet" type="text/css" href="comment/myemojiPl.css">
+	<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css">
+    <script type="text/javascript" src="js/sigroup-plugin/iFunc/sigroup.iFunc.plugin.v1.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-migrate.js"></script>
+	<script type="text/javascript" src="js/jquery.qqFace.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<!--<script type="text/javascript" src="js/jquery-1.7.1.js"></script>-->
+	<!--<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>-->
+    <script type="text/javascript" src="js/ajaxfileupload.js"></script>
+
+<style>
+.cache_div{
+	display: block !important;
+}
+
+</style>
+</head>
+<body>
+<div id="charFrame" class="qqBox">
+	<div class="BoxHead">
+		<div class="headImg">
+			<div class="internetHead cursor" id="internetHead" onOff="false"><img style="width:40px;height:40px;"  src="${user.icon}"></div>
+			<div class="internetName">${user.nickName}</div>
+			<div class="internetExt">
+				<a class="opt" id="opt" href="javascript:;" onOff="false">
+					<i class="fa fa-reorder "></i>
+				</a>
+				<div id="mmpop_system_menu">
+					<ul class="dropdown_menu">
+						<li id="closeAdio" onOff="true"><i class="fa fa-volume-up icolor"></i><a href="javascript:;">关闭声音</a></li>
+						<li id="ext"><i class="fa fa-circle-o-notch icolor"></i><a href="javascript:;">退出</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="interImg" id="mmpop_profile">
+                 <div class="profile_mini">
+					 <div class="profile_mini_hd">
+						 <div class="avatar">
+							 <img src="${user.icon}" alt="">
+						 </div>
+					 </div>
+					 <div class="profile_mini_bd">
+						 <div class="nickname_area">
+							 <h4 class="nickname">${user.nickName}</h4>
+							 <i class="nickset"></i>
+							 <a class="talck" href="javascript:;"></a>
+						 </div>
+						 <div class="meta_area ng-scope">
+							 <div class="meta_item">
+								 <!--<lable class="label_text">备注：</lable>-->
+								 <p class="ellipsis"></p>
+							 </div>
+
+						 </div>
+
+					 </div>
+				 </div>
+			</div>
+		</div>
+		<div id="search_bar" class="search_bar">
+			<i class="search_icon fa fa-search" aria-hidden="true"></i>
+			<input class="search_text" type="text" id="search_text" placeholder="搜索" oninput="setinput(this)" >
+			<div id="mmpop11" class="mmpop recommendation innerbox">
+				<div class="scroll-wrapper contacts" id="contacts">
+					<div class="searchContact">
+						<h6>联系人</h6>
+						<ul>
+							<!--<li class="itemLi" datatype="1" dataid="">-->
+								<!--<div class="itemLeft"><img src="" alt=""></div>-->
+								<!--<div class="itemRight"><p class="ellipsis"></p></div>-->
+							<!--</li>-->
+
+						</ul>
+					</div>
+					<div class="searchGroup">
+						<h6>群组</h6>
+						<ul>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="headbutton">
+			<div class="headbutchild" title="会话" > <i class="fa fa-comment icolor" ></i></div>
+			<div class="headbutchild" title="联系人"> <i class="fa  fa-user icolor" ></i></div>
+			<div class="headbutchild" title="文件"><i class="fa fa-file icolor" ></i></div>
+			<!--<div class="headbutchild" title="消息阶段演化"> <i class="fa fa-line-chart icolor" ></i></div>-->
+		</div>
+		<input type='hidden' id='userId' value="${user.userId}">
+		<input type='hidden' id='userIcon' value="${user.icon}">
+		<input type='hidden' id='userName' value="${user.userName}">
+		<div class="conLeft">
+			<div class="leftList">
+				<ul class="fileNav">
+					<li class="libg cursor" ctype="3" typeu="41">
+						<div class="liLeft"><img src="images/webwxgetmsgimg.jpg" alt="" /></div>
+						<div class="notice">
+							<span class="intername">通知</span>
+							<span class="infor ellipsis"></span>
+						</div>
+						<p class="prompt ellipsis" style="display: none;"></p>
+					</li>
+					<li class="libg cursor" ctype="3" typeu="31">
+						<div class="liLeft"><img src="images/webwx.jpg" alt=""></div>
+						<div class="actions">
+							<span class="intername">行动预案</span>
+							<span class="infor ellipsis"></span>
+						</div>
+						<p class="prompt ellipsis" style="display: none;"></p>
+					</li>
+				</ul>
+				<div id="userList">
+					<ul class="userList"></ul>
+				</div>
+			</div>
+			<div class="leftList">
+				<div class="sort_letter">群组</div>
+				<div id="userGroup">
+					<!--<div class="Group_list">-->
+						<!--<div class="num_logo">-->
+							<!--<img src="img/img.png" alt="">-->
+						<!--</div>-->
+						<!--<div class="right_name">-->
+							<!--<h4 class="num_name cursor">张三</h4>-->
+						<!--</div>-->
+					<!--</div>-->
+
+				</div>
+				<div class="sort_letter">联系人</div>
+				<div id="userItem">
+					<div id="letter" ></div>
+					<div class="sort_box" id="sort_box">
+						<!--
+						<div class="sort_list">
+							<div class="num_logo">
+								<img src="img/img.png" alt="">
+							</div>
+							<div class="right_name">
+								<h4 class="num_name cursor">张三</h4>
+							</div>
+						</div>
+						<div class="sort_list">
+							<div class="num_logo">
+								<img src="img/img2.png" alt="">
+							</div>
+							<div class="right_name">
+								<h4 class="num_name cursor">李四</h4>
+							</div>
+						</div>
+						<div class="sort_list">
+							<div class="num_logo">
+								<img src="img/img3.png" alt="">
+							</div>
+							<div class="right_name">
+								<h4 class="num_name">王五</h4>
+							</div>
+						</div>
+						<div class="sort_list">
+							<div class="num_logo">
+								<img src="img/img.png" alt="">
+							</div>
+							<div class="right_name">
+								<h4 class="num_name cursor">刘六</h4>
+							</div>
+						</div>
+						<div class="sort_list">
+							<div class="num_logo">
+								<img src="img/img2.png" alt="">
+							</div>
+							<div class="right_name">
+								<h4 class="num_name cursor">马七</h4>
+							</div>
+						</div>
+						<div class="sort_list">
+							<div class="num_logo">
+								<img src="img/img.png" alt="">
+							</div>
+							<div class="right_name">
+								<h4 class="num_name cursor">黄八</h4>
+							</div>
+						</div>
+						<div class="sort_list">
+							<div class="num_logo">
+								<img src="img/img2.png" alt="">
+							</div>
+							<div class="right_name">
+								<h4 class="num_name cursor">莫九</h4>
+							</div>
+						</div>
+						<div class="sort_list">
+							<div class="num_logo">
+								<img src="img/img3.png" alt="">
+							</div>
+							<div class="right_name">
+								<h4 class="num_name cursor">陈十</h4>
+							</div>
+						</div>
+						<div class="sort_list">
+							<div class="num_logo">
+								<img src="img/img.png" alt="">
+							</div>
+							<div class="right_name">
+								<h4 class="num_name cursor">a九</h4>
+							</div>
+						</div>
+						<div class="sort_list">
+							<div class="num_logo">
+								<img src="img/img2.png" alt="">
+							</div>
+							<div class="right_name">
+								<h4 class="num_name cursor">1十</h4>
+							</div>
+						</div>
+						-->
+					</div>
+				</div>
+			</div>
+			<div class="leftList" id="userFile">
+				<ul class="userFilelist">
+					<li class="libg" memory="15.8kb" fileUrl="" fileForm="test" fileTime="2018-05-10 16:20:53">
+						<div class="fileImg"><i class="iconfont icon-word"></i></div>
+						<div class="fileTitle"><h5 class="ellipsis">word</h5></div>
+					</li>
+					<li class="libg" memory="12.8kb" fileUrl="" fileForm="开发" fileTime="2018-05-10 12:20:53">
+						<div class="fileImg"><i class="iconfont icon-pdf"></i></div>
+						<div class="fileTitle"><h5 class="ellipsis">pdf</h5></div>
+					</li>
+					<li class="libg" memory="10.8kb" fileUrl="" fileForm="管理者" fileTime="2018-05-10 14:20:53">
+						<div class="fileImg"><i class="iconfont icon-excel"></i></div>
+						<div class="fileTitle"><h5 class="ellipsis">excel</h5></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="BoxConter">
+		<div class="conRight" id="sayCon">
+			<div class="Righthead">
+				<div class="headName">
+					<!--<div class="headNameTitle cursor"><b class="nameTitle">文件详情</b><i class="fa fa-angle-down"></i></div>-->
+				</div>
+				<div class="groupConects">
+					<div id="groupConects" class="clearfix">
+						<dl class="groupItem">
+							<dt><img src="" alt=""></dt>
+							<dd class="ellipsis">name</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+			<div class="RightFilecon ipage" id="RightFilecon">
+				<!--<ul class="noticeList item"></ul>-->
+			</div>
+			<div class="RightCont">
+				<ul class="newsList"><!--消息呈现区域 -->
+					<li class="moreNews"><p class="moreBtn cursor">查看更多</p></li>
+				</ul>
+			</div>
+			<div class="RightFoot">
+				<div class="footTop Main">
+					<ul>
+						<!-- <li><img src="img/20170926103645_31.jpg"></li> -->
+						 <li class="ExP imgBtn cursor" id="faceImg"><img src="img/20170926103645_33.png"></li>
+						<!-- <li><img src="img/20170926103645_35.jpg"></li> -->
+						<!-- <li><img src="img/20170926103645_37.jpg"></li> -->
+						<!-- <li><img src="img/20170926103645_39.jpg"></li> -->
+						<!-- <li><img src="img/20170926103645_41.jpg" alt="" /></li> -->
+						<input action="" type="file" name="file" id="file_submit" class="file_sub" style="display:none;" onchange="ajaxFileUpload()" multiple="multiple">
+						<li style="cursor: pointer;" id="file_sub_img" ><img src="img/20170926103645_43.jpg"></li>
+						<!-- <li><img src="img/20170926103645_45.jpg"></li> -->
+
+					</ul>
+					<div class="inputBox">
+						<!--<div id="dope" contenteditable="true" style="width: 99%;height: 100px; border: none;outline: none; resize:none;padding: 0 20px;" name="" rows="" cols=""></div>-->
+						<textarea id="dope" style="width: 99%;height: 100px; border: none;outline: none; resize:none;padding: 0 20px;" name="" rows="" cols=""></textarea>
+						<button class="sendBtn">发送(s)</button>
+					</div>
+					<div class="facebox expression">
+						<section class="emoji_tab"></section>
+						<section class="emoji_container">
+						</section>
+					</div>
+				</div>
+			</div>
+			<div class="Rightmask" onOff="false">
+				<p>未有聊天信息</p>
+			</div>
+			<div class="notices_modile" id="notices_modile">
+                <h5 class="mod_title"><span class="closeBtn cursor">x</span></h5>
+			</div>
+		</div>
+		<div class="conRight" id="userCon">
+			<div class="Righthead">
+
+				<div class="headName">
+					<div class="headNameTitle cursor"><b class="nameTitle">联系人详情</b></div>
+				</div>
+			</div>
+			<div class="RightCont">
+				<div id="user_xq">
+					<!--<p class="avatar"><img src="" alt=""></p>-->
+					<!--<div class="nickname_area">-->
+						<!--<h4 class="nickname">fengye</h4>-->
+						<!--<i class="ng_class"></i>-->
+					<!--</div>-->
+					<!--<p class="signature">nnnnnnnnnnn</p>-->
+                    <!--<div class="meta_area">-->
+						<!--<div class="meta_item">-->
+							<!--<label class="label" for="">备注：</label>-->
+							<!--<p class="ellipsis">是是是</p>-->
+						<!--</div>-->
+						<!--<div class="meta_item">-->
+							<!--<label class="label" for="">地区：</label>-->
+							<!--<p class="ellipsis">的点点滴滴多</p>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="action_area">-->
+						<!--<a href="javascript:;" class="button">发消息</a>-->
+					<!--</div>-->
+				</div>
+			</div>
+			<div class="Rightmask" onOff="false">
+				<p style="margin: 150px auto;">
+					<i class="fa fa-user"></i>
+					<!--<img src="http://localhost:8080/WG_TJ_IM/images/icon/mruser_icon.png" alt="" style="width: 200px;height: 200px;">-->
+				</p>
+			</div>
+		</div>
+		<div class="conRight" id="fileCon">
+			<div class="Righthead">
+				<div class="headName">
+					<div class="headNameTitle cursor"><b class="nameTitle">文件详情</b></div>
+				</div>
+			</div>
+			<div class="RightCont">
+				<ul class="fileList"><!--文件呈现区域 -->
+                     <li class="">
+
+					 </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="margin-top: 210px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					发送通知
+				</h4>
+			</div>
+			<div class="modal-body">
+				<form id="noticeSubmit" action="">
+					<div class="row">
+						<label for="">标题：</label>
+						<input class="notice_t" type="text">
+					</div>
+					<div class="row">
+						<label for="">内容：</label>
+						<textarea class="notice_con"></textarea>
+					</div>
+					<div class="row">
+						<label for="">发送人：</label>
+						<div class="allChecked">
+							<p><input type="checkbox" id="checkedAll" name="checkedAll"><span>全选</span></p>
+						</div>
+						<div class="notice_persons">
+							<!--<p><input type="checkbox" name="vehicle" value="Bike" /><span>person1</span></p>-->
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" style="width: 100px;margin-right: 20px;" onclick="sendSubmit()">
+					发送
+				</button>
+				<button type="button" class="btn btn-default" style="width: 100px;background: #939393;color: #fff;" data-dismiss="modal">关闭
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<!-- 图片预览下载 -->
+<div class="imgmodal" id="imgModal">
+	<div class="imgUploadBox">
+        <div class="imgClost">
+			<i class="fa fa-remove closeImg" id="closeImg"></i>
+		</div>
+		<div class="imgCon">
+			<img src="images/login.jpg" alt="">
+		</div>
+		<div class="imgFoot">
+			<div class="imgUploadWrap">
+				<a class="imgUpload" href="javascript:;"  download="" title="下载图片"><i class="fa fa-arrow-down"></i></a>
+			</div>
+		</div>
+	</div>
+</div>
+<div style="display:none;">
+    <textarea id="text" rows="3" cols="20"></textarea>
+    <button onclick="send()">发送消息</button>
+    <hr/>
+    
+    <button onclick="closeWebSocket()">关闭WebSocket连接</button>
+    <hr/>
+    <div id="message"></div>
+</div>
+<div style="display: none;">
+	<audio id="audioPlay" volume="0.2" controls="controls">
+		<source src="music/cnwav.mp3" type="audio/ogg" />
+	</audio>
+</div>
+<script type="text/javascript" src="js/jquery.charfirst.pinyin.js"></script>
+<script type="text/javascript" src="js/sort.js"></script>
+<script type="text/javascript" src="js/myemojiPl.js"></script>
+<script type="text/javascript" src="jscript/home.js"></script>
+<script type="text/javascript" src="jscript/chat.js"></script>
+
+<script type="text/javascript" src="js/sigroup-plugin/iPage/sigroup.iPage.plugin.v4.min.js"></script>
+<script type="text/javascript" src="js/sigroup-plugin/iFunc/sigroup.iFunc.plugin.v1.js"></script>
+<script type="text/javascript">
+	//接口线上 本地的服务器接口
+	 var postUrl = 'http://103.36.29.130:9001/im/';
+//    var  postUrl = 'http://localhost:8080/WG_TJ_IM/';
+
+	//webstroke 服务线上 本地的 服务接口
+      var wsUrl="ws://103.36.29.130:9003/webim/websocket/";
+//  var wsUrl="ws://localhost:8080/WG_TJ_WebIM/websocket/";
+
+    //文件图片 上传下载的 线上本地路径
+       var fileUrl= "http://103.36.29.130:9001/files/";
+//   var fileUrl= "E:/file/";
+
+     var prom_num = 0;    //记录接收消息的数量
+	 var contactsArry = [];//通讯录联系人数据
+     var groupsArry = [];  //群组数据
+     var userIdFromGroup = "";  //除去自己群成员以’,‘分割
+     var userId=$("#userId").val();   //自己的id
+     var userIcon=$("#userIcon").val();  //自己的头像
+     var contacts;  //
+	 var sendOnoff = false; //默认第一次加载 聊天信息时 不执行聊天列表任何事件
+	 var activeType;    //当前聊天的类型 （群组还是单聊）
+     var timeStr = 0;   //上一信息时间戳
+     var timeTh = 0;   //上一信息时间戳
+	 var inforPageNo = 1;    //聊天信息历史记录默认加载第一页
+	 var inforPageSize = 8;  //聊天信息历史记录默认 一页加载10条信息
+	 var inforPages;          //聊天信息历史记录总页数
+
+     //焦点
+     $(".headbutchild").eq(0).find("i").addClass("clickicolor");
+     $('.leftList').eq(0).addClass('list_active');
+     $(".conRight").eq(0).addClass("right_active");
+     //初始化 聊天人员 通讯录 文件列表
+     getUserList();        //获取通讯录成员
+	 getGroupUserByGroupId();//获取所有成员，根据群组id，87包含所有的群组成员
+     getUserGroupList();   //获取群组
+     getFileList();        //获取文件列表
+	 maskShowHide();
+     //发送消息
+     function send() {
+         var message = $("#text").val();
+         websocket.send(message);
+     }
+
+	 $("#file_sub_img").click(function(){
+		 $(".file_sub").click();
+	 });
+
+
+    //-------事件-------
+	//模糊查询
+    function setinput(this_){
+        $('#mmpop11').show();
+        $('#contacts .searchContact ul').html("");
+        $('#contacts .searchGroup ul').html("");
+
+        $.each(contactsArry,function(i,ele){
+            //若找到以txt的内容开头的，添option
+//			console.log(typeof ele.nickName );
+			if(ele.nickName.substring(0,this_.value.length).indexOf(this_.value)==0){
+				$('#contacts .searchContact').show();
+				var item = contactHtml('1',ele.userId,ele.userIcon,ele.nickName);
+				$('#contacts .searchContact ul').append(item);
+			}
+
+        });
+        $.each(groupsArry,function(i,ele){
+            //若找到以txt的内容开头的，添option
+			if(ele.groupName.substring(0,this_.value.length).indexOf(this_.value)==0){
+				$('#contacts .searchGroup').show();
+				var item = contactHtml('2',ele.groupId,ele.groupIcon,ele.groupName);
+				$('#contacts .searchGroup ul').append(item);
+			}
+
+        });
+        //默认给查询出的第一个联系人 添加焦点
+        $('#contacts .itemLi').eq(0).addClass('itemActive');
+
+        //模糊查询输入后 点下拉框的其他位置 隐藏下拉框
+		$(document).click(function(){
+			if($('#mmpop11').show()){
+				$('#mmpop11').hide();
+				$('#contacts .searchContact').hide();
+				$('#contacts .searchGroup').hide();
+			}
+		});
+    }
+    //模糊查询 焦点时 按下enter键
+    $('#search_text').focus(function(){
+        document.onkeydown = function(e){
+            if(!e){
+                e = window.event;
+            }
+            if((e.keyCode || e.which) == 13){
+                $('#contacts .itemActive').click();
+                $('#search_text').val('');
+                $('#search_text').blur();
+            }
+        };
+	});
+
+
+    //模糊查询的结果 点击查询的联系人 跳转到对话
+    sentClick($('#contacts'),'.itemLi');
+
+    //聊天记录 通讯录 文件列表横向导航点击事件
+    var navArray = $('.headbutton .headbutchild');
+    $.each(navArray,function(i,ele){
+        $(this).on('click',function(){
+            $(this).find("i").addClass('clickicolor');
+            $(this).siblings().find("i").removeClass('clickicolor');
+            $('.conLeft').children().eq(i).addClass('list_active').siblings().removeClass('list_active');
+            $('.BoxConter').children().eq(i).addClass('right_active').siblings().removeClass('right_active');
+            getFileList();
+
+        });
+    });
+
+     //通知消息点击详情
+	 $('.fileNav .libg').eq(0).on('click',function (){
+	     $(this).addClass('bg').siblings().removeClass('bg');
+         $(this).find('.prompt').html('0').hide();
+         var url = "message/getInformPlanList";
+         var ctype = $(this).attr('ctype');
+         var typeu = $(this).attr('typeu');
+         $('#sayCon').find('.headName').html('通知消息');
+         var str = '<button class="btn btn-primary btn-lg addBtn" data-type="notic" data-toggle="modal" data-target="#myModal">+添加</button>';
+         $('#sayCon').find('.headName').append(str);
+		 $('#sayCon').find('.RightCont').hide();
+         $('#sayCon').find('.RightFoot').hide();
+         $('#sayCon').find('.RightFilecon').show();
+         actionsClick(url,ctype,typeu);
+		 if($('#sayCon .Rightmask').attr('onOff')=="false"){
+             $('#sayCon .Rightmask').attr('onOff','true');
+             $('#sayCon .Rightmask').hide();
+		 }
+         $('#userList .libg').removeClass('bg');
+
+     });
+     //行动预案点击详情
+     $('.fileNav .libg').eq(1).on('click',function (){
+         $(this).addClass('bg').siblings().removeClass('bg');
+         $(this).find('.prompt').html('0').hide();
+         var url = 'message/getAtionPlanList';
+         var ctype = $(this).attr('ctype');
+         var typeu = $(this).attr('typeu');
+         $('#sayCon').find('.headName').html('行动详情');
+         var str = '<button class="btn btn-primary btn-lg addBtn" data-type="ation" data-toggle="modal" data-target="#myModal">+添加</button>'
+         $('#sayCon').find('.headName').append(str);
+         $('#sayCon').find('.RightCont').hide();
+         $('#sayCon').find('.RightFoot').hide();
+         $('#sayCon').find('.RightFilecon').show();
+         actionsClick(url,ctype,typeu);
+         if($('#sayCon .Rightmask').attr('onOff')=="false"){
+             $('#sayCon .Rightmask').attr('onOff','true');
+             $('#sayCon .Rightmask').hide();
+         }
+         $('#userList .userList .libg').removeClass('bg');
+     });
+
+     //通知和行动预案 发送新通知
+	function sendSubmit(){
+	    var dataType = $('.addBtn').attr('data-type');
+        var personsId = $("input:checkbox[name='name']:checked").map(function(index,elem) {
+            return $(elem).attr('data-personid');
+        }).get().join(',');
+        var title = $.trim($('.notice_t').val());
+        var content = $.trim($('.notice_con').val());
+        if(title == ''||content == ''){alert("名称和内容不能为空！");return;}
+        if(personsId.length==0){alert("请选择要发送的人！");return;}
+        var data = {
+            "uid": userId,
+            "title": title,
+			"content": content,  //发送文本内容
+			"type": 1,   //发送的是文本
+			"toUid": personsId,  //发给选中人员的id
+			"url": ''
+		};
+	    if(dataType == 'notic'){
+	        $.ajax({
+				type: 'post',
+				url: 'message/addInformPlan',
+				data: data,
+				dataType: 'json',
+				success: function(msg){
+                    var typeu = "31";
+					sendMessage_action(data,typeu);
+				    if(msg.status == 1){
+                        $('.notice_t').val('');
+                        $('.notice_con').val('');
+                        $("#noticeSubmit input:checkbox").each(function(){
+                            this.checked=false;
+						});
+                        $('.fileNav .libg').eq(0).click();
+                        $('#myModal').modal('hide');
+					}
+				}
+			});
+
+		}else if(dataType == 'ation'){
+            $.ajax({
+                type: 'POST',
+                url: 'message/addActionPlan',
+                data: data,
+                dataType: 'json',
+                success: function(msg){
+                    var typeu = "41";
+                    sendMessage_action(data,typeu);
+                    if(msg.status == 1){
+                        $('.notice_t').val('');
+                        $('.notice_con').val('');
+                        $("#noticeSubmit input:checkbox").each(function(){
+                            this.checked=false;
+                        });
+                        $('#myModal').modal('hide');
+                        $('.fileNav .libg').eq(1).click();
+
+                    }
+                }
+            });
+		}
+	}
+
+	//添加通知和行动预案 全选
+    $("#checkedAll").click(function(){
+        // this 全选的复选框
+        var userids=this.checked;
+        //获取name=box的复选框 遍历输出复选框
+        $("input:checkbox[name='name']").each(function(){
+            this.checked=userids;
+        });
+    });
+
+    //给name=name的复选框绑定单击事件
+	$('.notice_persons').on("click","input[name='name']",function(){
+		//获取选中复选框长度
+		var length = $("input:checkbox[name='name']:checked").length;
+		//复选框长度
+		var len = $("input:checkbox[name='name']").length;
+		if(length==len){
+			$("#checkedAll").get(0).checked=true;
+		}else{
+			$("#checkedAll").get(0).checked=false;
+		}
+
+	});
+
+
+    //通知消息详情列表 点击事件
+    $('#sayCon').on('click','.fileli',function(){
+        var title = $('#sayCon').find('.Righthead').find('.nameTitle').text().slice(0,-3);
+        var m_title = $(this).find('h4').html();
+        var m_time = $(this).find('.notice_time').html();
+        var m_conten = $(this).find('.notic_bottom').html();
+        var readStatus = $(this).attr('readStatus');
+        var typeu = $(this).parents('.RightFilecon').attr('typeu');
+        var noticId = $(this).attr('noticId');
+        var $this = $(this);
+        if(readStatus == 0){
+            if(typeu == 31){
+
+                //  行动 message/setReadAtionPlan?id=31
+				$.ajax({
+                    type: "post",
+                    url: "message/setReadAtionPlan",
+                    data: {"id":noticId},
+					dataType: "json",
+					success: function(data){
+                        if(data.status == 1){
+                            $this.attr('readstatus','1');
+                            $this.find('.notice_read').html('已读');
+                            $this.find('.notice_read').removeClass('notice_unread');
+						}
+					},
+					error: function(){
+
+					}
+
+				});
+			}else if(typeu == 41){
+				//通知消息message/setReadInform?id=31
+                $.ajax({
+                    type: "post",
+                    url: "message/setReadInform",
+                    data: {"id":noticId},
+                    dataType: "json",
+                    success: function(data){
+                        if(data.status == 1){
+                            $this.attr('readstatus','1');
+                            $this.find('.notic_top').find('.notice_read').html('已读').removeClass('notice_unread');
+                        }
+                    },
+                    error: function(){
+
+                    }
+
+                });
+			}
+
+		}
+        $(this).attr('data-target','#myModal_notice');
+        noticAtion(title,m_title,m_time,m_conten);
+    });
+
+    userlistClick();
+    //左边聊天列表点击事件
+    function userlistClick(){
+        $('#userList').on('click','li',function(){
+            inforPageNo = 1;
+        	activeType = $(this).find('.userInfo').attr('data-usertype');
+            var toId = $(this).find('.userInfo').attr('data-id');
+            var imgSrc = $(this).find('img').attr('src');
+            $('.fileNav .libg').removeClass('bg');
+            $(this).addClass('bg').siblings().removeClass('bg');
+            $(this).find('.prompt').html('').hide();
+            var intername=$(this).find('.intername').html();
+            var initerBox = '<div class="headNameTitle cursor" ctype="'+activeType+'" onOff="false" groupId="'+toId+'"><b class="nameTitle">'+intername+'</b><i class="fa fa-angle-down"></i></div>';
+            $('#sayCon .headName').html(initerBox);
+            $('#sayCon .newsList div.sayclass').remove();
+            $('#sayCon .newsList li.clearfix').remove();
+            $('#sayCon .newsList .moreNews .moreBtn').attr("activeType",activeType);
+            $('#sayCon .newsList .moreNews .moreBtn').attr("toId",toId);
+            $('#sayCon .newsList .moreNews').hide();
+            getUserOldInfor(activeType,toId);
+            $('#sayCon').find('.RightFilecon').hide();
+            $('#sayCon').find('.RightCont').show();
+            if($('#sayCon .Rightmask').attr('onOff')=="false"){
+                $('#sayCon .Rightmask').attr('onOff','true');
+                $('#sayCon .Rightmask').hide();
+            }
+            $('#sayCon .RightFoot').show();
+            timeStr = 0;
+            timeTh = 0;
+            userIdFromGroup = "";
+            if(activeType ==1){
+                $('#groupConects').empty();
+                var str = '<dl class="groupItem">'+
+                    '<dt><img src="'+imgSrc+'" alt=""></dt>'+
+                    '<dd class="ellipsis">'+intername+'</dd>'+
+                    '</dl>';
+                $('#groupConects').append(str);
+            }else{
+            	 getUserAllNoSelf(toId);
+            }
+        })
+    }
+    var formatDate = function(date){  
+        date = new Date(date);  
+        var y=date.getFullYear();  
+        var m=date.getMonth()+1;  
+        var d=date.getDate();  
+        var h=date.getHours();  
+        var m1=date.getMinutes();  
+        var s=date.getSeconds();  
+        m = m<10?("0"+m):m;  
+        d = d<10?("0"+d):d;  
+        h = h<10?("0"+h):h; 
+        m1 = m1<10?("0"+m1):m1; 
+        s = s<10?("0"+s):s;
+        return y+"-"+m+"-"+d+" "+h+":"+m1+":"+s;  
+    };
+    //根据群组聊天或者单人聊天 获取成员信息
+    function getUserAllNoSelf(groupId){
+        $.ajax({
+            type: 'post',
+            url: 'message/getGroupUserByGroupId',
+            data: {"groupId":groupId},
+            dataType: 'json',
+            success: function(data){
+                console.log(data);
+                $('#groupConects').empty();
+                var str = '';
+                $.each(data.data.users,function(i,e){
+                    if(userId != e.userId){
+                        userIdFromGroup+=e.userId+",";
+						str = '<dl class="groupItem">'+
+                            '<dt><img src="'+e.userIcon+'" alt=""></dt>'+
+                            '<dd class="ellipsis">'+e.nickName+'</dd>'+
+                            '</dl>';
+						$('#groupConects').append(str);
+                    }
+
+                });
+                userIdFromGroup = userIdFromGroup.substring(0,userIdFromGroup.length-1);
+            }
+        });
+    }
+
+    //点击通讯录
+    function userItemClick(){
+        $('#sort_box').on('click','.sort_list',function(){
+            var data_type = $(this).attr('data_type');
+            var data_name = $(this).find('.right_name').find('.num_name').html();
+            var data_p = $(this).find('input').attr('data_tel');
+            var data_email = $(this).find('input').attr('data_email');
+            var data_id = $(this).attr('data_id');
+            var data_img = $(this).find('.num_logo').find('img').attr('src');
+            $(this).addClass('bg').siblings().removeClass('bg');
+            if($('#userCon .Rightmask').attr('onOff')=="false"){
+                $('#userCon .Rightmask').attr('onOff','true');
+                $('#userCon .Rightmask').hide();
+            }
+            userXiangqin(data_type,data_id,data_img,data_name,data_p,data_email);
+        });
+    }
+	//点击群组
+    function userGroupClick(){
+        $('#userGroup').on('click','.Group_list',function(){
+            var data_type = $(this).attr("data_type");
+            var data_name = $(this).find('.right_name').find('.num_name').html();
+//            var data_p = $(this).find('input').attr('data_tel');
+//            var data_email = $(this).find('input').attr('data_email');
+            var data_id = $(this).attr('data_id');
+            var data_img = $(this).find('.num_logo').find('img').attr('src');
+            $(this).addClass('bg').siblings().removeClass('bg');
+            if($('#userCon .Rightmask').attr('onOff')=="false"){
+                $('#userCon .Rightmask').attr('onOff','true');
+                $('#userCon .Rightmask').hide();
+            }
+            userGroupXiangqin(data_type,data_id,data_img,data_name);
+        });
+    }
+
+    //点击群组和通讯录详情 发送消息
+    sentClick($('#user_xq'),'.button');
+
+    //通讯录详情 点击发送消息跳转到聊天列表
+    function sentClick(sendWrap,classname){
+        sendWrap.on('click',classname,function(){
+            sendOnoff = true; //跳转到聊天列表页面 从新请求聊天列表 触发列表第一个click事件
+            var toId = $(this).attr('dataId');
+            var type = $(this).attr('dataType');
+            var datas = {};
+            if(type == 1){
+                datas = {
+                    "dtype":type,
+                    "user_id": userId,
+                    "to_user_id": toId
+				}
+			}else if(type == 2){
+                datas = {
+                    "dtype":type,
+                    "user_id": userId,
+                    "group_id": toId
+                }
+			}
+            $.ajax({
+                type: "post",
+                url: postUrl+"group/addDialogue",
+                data: datas,
+                dataType:'jsonp',
+                success:function(data){
+
+                    sendOnoff = true;
+                    getGroupUserByGroupId();
+                },
+                error: function(){
+                }
+            });
+        });
+    }
+
+    //点击文件列表
+    $('#userFile').on('click','.libg',function(){
+        var fileWrap = $('#fileCon').find('.RightCont').find('.fileList');
+        var filename = $(this).find('h5').html();
+        var fileimg = $(this).find('i').attr("class");
+        var filememory = $(this).attr('memory');
+        var filemeurl = $(this).attr('fileUrl');
+        var filemeform = $(this).attr('fileForm');
+        var filemetime = $(this).attr('fileTime');
+        var str = fileXqHtml(filename,fileimg,filememory,filemeurl,filemeform,filemetime);
+        $(this).addClass('bg').siblings().removeClass('bg');
+        fileWrap.empty();
+        fileWrap.append(str);
+    });
+
+    //关闭声音
+    $('#closeAdio').on('click',function(){
+        if($(this).attr('onOff')=='true'){
+            $(this).attr('onOff','false');
+            $(this).find('a').html('开启声音');
+            $('#audioPlay').find('source').attr('src','');
+            $(this).find('i').attr('class','fa fa-volume-off icolor');
+        }else{
+            $(this).attr('onOff','true');
+            $(this).find('a').html('关闭声音');
+            $(this).find('i').attr('class','fa fa-volume-up icolor');
+            $('#audioPlay').find('source').attr('src','music/cnwav.mp3');
+        }
+    });
+    
+    //消息声音
+    function audioPlay(){
+        $('#audioPlay').trigger('play');
+    }
+    
+    //退出
+    $('#ext').on('click',function(){
+    	  if (confirm("是否确认退出？")) {
+    			   window.location.href="login/logout";
+           } else {
+               return false;
+           }
+    });
+
+	//--------函数-------
+    //初始化遮罩层效果
+    function maskShowHide(){
+        if($('.conLeft .libg').find('.bg').length<1){
+            $('.Rightmask').show();
+            $('.RightFoot').hide();
+        }
+    }
+
+    //通知和行动预案 加载数据
+    function actionsClick(url,ctype,typeu){
+     //   var actionsWrap = $('#sayCon').find('.RightFilecon');
+//        $('#sayCon').find('.RightFilecon').html("");
+        $('#RightFilecon').attr("ctype",ctype).attr("typeu",typeu);
+		/*
+        $.ajax({
+            type: 'post',
+            url: url,
+            data: {"uid":userId,"pageNo":1,"pageSize": 20},
+            dataType:'json',
+            success: function(data){
+                if(data.status == 1){
+                    actionsWrap.empty();
+                    actionsWrap.attr("ctype",ctype).attr("typeu",typeu);
+                    var dataArry = data.result;
+//                    console.log(dataArry);
+                    var noticeRead = '';
+                    var readClass = '';
+                    $.each(dataArry,function(i,ele){
+                        if(ele.readstatus == 0){
+                            noticeRead = '未读';
+                            readClass = 'notice_unread';
+                            if(ele.uid == ele.toUser){
+                                noticeRead = '已读';
+                                readClass = '';
+							}
+						}else if(ele.readstatus == 1){
+                            noticeRead = '已读';
+						}
+                        $(
+                            '<li class="fileli cursor" noticId="'+ele.id+'" readStatus="'+ele.readstatus+'" data-toggle="modal">'+
+                            '<div class="notic_top">'+
+                            '<!--<img src="" alt="">-->'+
+                            '<h4 class="notice_title ellipsis">'+ele.title+'</h4>'+
+                            '<span class="notice_read '+readClass+'">'+noticeRead+'</span>'+
+                            '<span class="notice_time">'+ele.time+'</span>'+
+                            //'<span class="notice_author">发布人：</span>'+
+                            '</div>'+
+                            '<div class="notic_bottom ellipsis">'+ele.content+'</div>'+
+                            '</li>'
+                        ).appendTo(actionsWrap);
+                    });
+
+                }
+            }
+        });
+        */
+
+        var param = {
+            "uid":userId,
+			"path": "page/dynamic/notactsList.html"
+		};
+        console.log(param);
+        var options = {};
+        options.param=param;
+        options.callback = function(){
+
+        };
+        iPage.pageSize = 8;
+        iPage.page_foot_html="";
+        iPage.container_foot_html="";
+        var obj = new iPage.ScrollLoadContainer("RightFilecon", url, options).init();
+
+    }
+
+    //通知行动预案 列表详情 弹框
+    function noticAtion(title,m_title,m_time,m_conten){
+
+        $('#myModal_notice').remove();
+        //点击通知列表 展示详情 模态框（Modal）
+        var str = ''+
+            '<div class="modal fade" id="myModal_notice" tabindex="-1" role="dialog" aria-labelledby="myNoticesTitle" aria-hidden="true">'+
+            '<div class="modal-dialog" style="margin-top: 210px;">'+
+            '<div class="modal-content">'+
+            '<div class="modal-header">'+
+            '<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>'+
+            '<h4 class="modal-title" id="myNoticesTitle">'+title+' </h4>'+
+            '</div>'+
+            '<div class="modal-body">'+
+            '<div class="notice_modal">'+
+            '<h3 class="n_m_title">'+m_title+'</h3>'+
+            '<p class="n_m_time">'+m_time+'</p>'+
+            '<div class="n_m_content">'+m_conten+'</div>'+
+            '</div>'+
+            '</div>'+
+            '</div><!-- /.modal-content -->'+
+            '</div><!-- /.modal -->'+
+            '</div>';
+        $('body').append(str);
+    }
+
+    //获取所有成员 聊天消息
+    function getGroupUserByGroupId() {
+
+        /** 获取**/
+        $.ajax({
+            type: "post",
+            url: postUrl+"group/getDialogue",
+            data: {"user_id":userId},
+            dataType:'jsonp',
+            success:function(data){
+
+                if(data.status==1 && data.result!=null){
+                    $("#userList .userList").empty();
+                    var result=data.result;
+                    var str="";
+                    $.each(result,function(i,e) {
+
+                        str+="<li class='libg'>";
+                        str+="<div class='liLeft' id='icon_"+e.userId+"'><img height='40px' weight='40px' style='border-radius: 50%;' src='"+e.userIcon+"'></div>";
+                        str+="<div class='liRight'>";
+                        str+="<span class='intername cursor'>"+e.nickName+"</span>";
+                        str+="<span class='infor ellipsis'></span>";
+                        str+="<span class='userInfo' style='display:none' data-id='"+e.userId+"' data-userName='"+e.nickName+"' data-userType='"+e.userType+"' ></span>";
+                        str+="<i class='sendtime ellipsis'></i>";
+                        str+="</div>";
+                        str+= "<p class='prompt ellipsis' style='display: none;'></p>";
+                        str+="</li>";
+                    });
+                    $("#userList .userList").append(str);
+                }
+                if(sendOnoff){
+                    $('.headbutchild').eq(0).find("i").addClass('clickicolor');
+                    $('.headbutchild').eq(0).siblings().find("i").removeClass('clickicolor');
+                    $('.conLeft').children().eq(0).addClass('list_active').siblings().removeClass('list_active');
+                    $('.BoxConter').children().eq(0).addClass('right_active').siblings().removeClass('right_active');
+                    $('#userList .userList').find('.libg').eq(0).click();
+                    $('#userList .userList').find('.libg').eq(0).addClass('bg').siblings().removeClass('bg');
+                    $('#userList .userList').find('.libg').eq(0).find('.prompt').html('').hide();
+                    $('#sayCon').find('.RightFilecon').hide();
+                    $('#sayCon').find('.RightCont').show();
+                    if($('#sayCon .Rightmask').attr('onOff')=="false"){
+                        $('#sayCon .Rightmask').attr('onOff','true');
+                        $('#sayCon .Rightmask').hide();
+                    }
+                    $('#sayCon .RightFoot').show();
+                    $('.fileNav .libg').removeClass('bg');
+				}
+            },
+
+            error:function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(textStatus);
+                console.log(XMLHttpRequest.readyState);
+                console.log(XMLHttpRequest.status);
+            }
+        });
+    }
+
+    //点击聊天列表 获取聊天历史记录
+    function getUserOldInfor(type,toid){
+        var data = {};
+        if(type == 1){
+            data = {
+                "dtype":type,
+                "user_id": userId,
+                "targetUserId": toid,
+				"pageNo": inforPageNo,
+				"pageSize": inforPageSize
+            }
+        }else if(type == 2){
+            data = {
+                "dtype":type,
+                "user_id": userId,
+                "targetGroupId": toid,
+                "pageNo": inforPageNo,
+                "pageSize": inforPageSize
+            }
+        }
+        $.ajax({
+            type: "post",
+            url: postUrl+"group/getHistoryMsg",
+            data: data,
+            dataType:'jsonp',
+            success:function(data){
+                if(data.status == 1){
+                    inforPages = data.total;
+                    //如果总页数 大于1页 那么显示 加载更多历史记录 调用其点击事件
+                    if(inforPages>1){
+                        $('#sayCon .newsList .moreNews').show();
+                    }
+                    if(inforPageNo == inforPages){
+                        $('#sayCon .newsList .moreNews').hide();
+                    }
+                    var dataArry = data.result;
+                    var liStr = '';
+//                    console.log(dataArry);
+                    $.each(dataArry,function(i,ele){
+                    	  var date = new Date(ele.createTime.replace(/-/g,'/')); 
+                   	   var time = date.getTime();
+                    	if(inforPages ==1 && i == 0 ){
+                    		timeStr = time;
+                    		timeTh = time;
+                    	}
+                    	   if((timeStr - time) > 30*60*1000){
+                    		   if(new Date(timeStr).getDate() == new Date(time).getDate() ){
+                                   $('#sayCon .RightCont .newsList').children().eq(0).after("<div class='sayclass'>"+ele.createTime.split(" ")[1]+"</div>");
+                    		   }else{
+                                   $('#sayCon .RightCont .newsList').children().eq(0).after("<div class='sayclass'>"+ele.createTime+"</div>");
+                    		   }
+                    	   }
+                    	   timeStr = time;
+                      	// vat  time = date.getTime(); //转换成时间戳  
+                      //	 var min = (time - str)%86400%3600/60;	    
+                      	 /*  if(min >10 ){
+                      		  $('#sayCon').find('.RightCont').find('.newsList').append("<div>"+ele.createTime+"</div>");  
+                      	  } */
+                        var content;
+                        var newsPadding;
+                        //sendStatus 类型是1 是用户发送的信息 2是用户接收的信息
+                        if(ele.sendStatus == 1){
+                            if(ele.typeu == 11||ele.typeu == 21){
+                                content = ele.content;
+							}else if(ele.typeu == 12||ele.typeu == 22){
+                                newsPadding = 'padding: 0;';
+								content = '<div class="fileImg cursor" uploadSrc="'+(ele.content.url)+'"><img src="'+(fileUrl+ele.content.url)+'"/></div>';
+							}else if(ele.typeu == 15||ele.typeu == 25){
+                                newsPadding = 'padding: 2px;';
+							    content = fileHtml(ele.content.fileName,ele.content.size,ele.content.url);
+							}
+                            liStr = '<li class="clearfix">'+
+                                '<div class="answerHead"><img src="'+ele.sendIcon+'"></div>'+
+                                '<div class="answers" style="'+newsPadding+'"><img class="jiao" src="images/icon/masker01.png">'+content+'</div>'+
+                                '</li>';
+                        }else if(ele.sendStatus == 2){
+                            if(ele.typeu == 11||ele.typeu == 21){
+                                content = ele.content;
+                            }else if(ele.typeu == 12||ele.typeu == 22){
+                                newsPadding = 'padding: 0;';
+                                content = '<div class="fileImg cursor" uploadSrc="'+ele.content.url+'"><img src="'+(fileUrl+ele.content.url)+'" /></div>';
+                            }else if(ele.typeu == 15||ele.typeu == 25){
+                                newsPadding = 'padding: 2px;';
+                                content = fileHtml(ele.content.fileName,ele.content.size,ele.content.url);
+                            }
+                            liStr = '<li class="clearfix">'+
+                                '<div class="nesHead"><img src="'+ele.sendIcon+'"/></div>'+
+                                '<div class="news" style="'+newsPadding+'"><img class="jiao" src="images/icon/masker02.png">'+content+'</div>'+
+                                '</li>';
+                        }
+
+                        $('#sayCon .RightCont .newsList').children().eq(0).after(liStr);
+                        if(inforPageNo == inforPages && dataArry.length-1==i){
+                            $('#sayCon .RightCont .newsList').children().eq(0).after("<div class='sayclass'>"+ele.createTime+"</div>");
+                        }
+                    });
+
+                }
+
+            },
+            error: function(){
+
+            }
+        });
+    }
+
+    //点击聊天历史记录 加载更多
+    getUserOldInforMore();
+	function getUserOldInforMore(){
+        $('#sayCon .newsList .moreNews .moreBtn').on('click',function(){
+			var nowcType = $(this).attr('activeType');
+			var toId = $(this).attr('toId');
+            inforPageNo++;
+            getUserOldInfor(nowcType,toId);
+        });
+
+	}
+
+    //获取联系人列表
+    function getUserList(){
+        //获取
+        $.ajax({
+            type: "post",
+            url: "message/getAllUserInfoNoSelf",
+            data: {"userId":userId},
+            dataType:'json',
+            success:function(data){
+                if(data.status==1){
+                    var result=data.data;
+                    contactsArry = result;
+                    var str="";
+                    var strPerson = "";
+                    $.each(result,function(i,e){
+                        str+="<div class='sort_list' data_id='"+e.userId+"' data_type='1'>";
+                        str+="<div class='num_logo' id='icon_"+e.userId+"'><img height='40px' width='40px' style='border-radius: 50%;' src='"+e.userIcon+"'></div>";
+                        str+="<div class='right_name'>";
+                        str+="<h4 class='num_name cursor'>"+e.nickName+"</h4>";
+                        str+="</div>";
+                        str+="<input type='hidden' data_tel='"+e.tel+"' data_email='"+e.email+"' />";
+                        str+="</div>";
+
+//                        var item = contactHtml('1',e.userId,e.userIcon,e.nickName);
+//                        $('#contacts .searchContact ul').append(item);
+
+                    });
+                    //根据联系人数据 生成 弹框内发送人复选框
+                    $.each(result,function(i,e){
+                        strPerson+='<p><input type="checkbox" name="name" data-personId="'+e.userId+'" value="'+e.nickName+'" /><span class="ellipsis">'+e.nickName+'</span></p>';
+                    });
+                    $("#sort_box").append(str);
+                    $(".notice_persons").append(strPerson);
+                    contactsSort();
+                    userItemClick();
+                }
+            },
+            error: function(){
+
+            }
+        });
+    }
+
+	//获取群组列表
+    function getUserGroupList(){
+        $("#userGroup").empty();
+        //获取
+        $.ajax({
+            type: "post",
+            url: "message/getGroupInfoByUserId",
+            data: {"userId":userId},
+            dataType:'json',
+            success:function(data){
+//				console.log(data);
+                if(data.status==1 && data.data!=null){
+                    var result = data.data;
+                    groupsArry = result;
+                    var str="";
+//                    var strPerson = "";
+                    $.each(result,function(i,e){
+                        str+="<div class='Group_list' data_id='"+e.groupId+"' data_type='2'>";
+                        str+="<div class='num_logo' id='icon_"+e.groupId+"'><img height='40px' width='40px' style='border-radius: 50%;' src='"+e.groupIcon+"'></div>";
+                        str+="<div class='right_name'>";
+                        str+="<h4 class='num_name cursor'>"+e.groupName+"("+e.userNum+")"+"</h4>";
+                        str+="</div>";
+                        str+="<input type='hidden' data_tel='"+e.tel+"' data_email='"+e.email+"' />";
+                        str+="</div>";
+
+//                        var item = contactHtml('2',e.groupId,e.groupIcon,e.groupName);
+//                        $('#contacts .searchGroup ul').append(item);
+                    });
+                    //根据联系人数据 生成 弹框内发送人复选框
+//                    $.each(result,function(i,e){
+//                        strPerson+='<p><input type="checkbox" name="name" data-personId="'+e.userId+'" value="'+e.nickName+'" /><span>'+e.nickName+'</span></p>';
+//                    });
+                    $("#userGroup").append(str);
+//                    $(".notice_persons").append(strPerson);
+                    userGroupClick();
+                }
+            },
+            error: function(){
+
+            }
+        });
+
+    }
+
+    //获取文件列表
+	function getFileList(){
+        $('#userFile ul').empty();
+        $.ajax({
+            type: "post",
+            url: postUrl+"group/getFileList",
+            data: {"user_id":userId},
+            dataType:'jsonp',
+            success:function(data){
+                if(data.length>0){
+                    var result=data;
+//                    console.log(data[0].content.fileName);
+                    var str="";
+                    var fileClass;
+                    var filePath;
+                    var regex = /^(.)+\.doc$/;
+                    var regex01 = /^(.)+\.pdf$/;
+                    var regex02 = /^(.)+\.ppt/;
+                    var regex03 = /^(.)+\.xls$/;
+                    var regex04 = /^(.)+\.txt$/;
+
+                    $.each(result,function(i,e){
+                        filePath = e.content.url;
+                        if(regex.test(filePath)){
+                            fileClass = 'iconfont icon-word';
+						}else if(regex01.test(filePath)){
+                            fileClass = 'iconfont icon-pdf';
+                        }else if(regex02.test(filePath)){
+                            fileClass = 'iconfont icon-ppt';
+                        }else if(regex03.test(filePath)){
+                            fileClass = 'iconfont icon-excel';
+                        }else if(regex04.test(filePath)){
+                            fileClass = 'iconfont icon-txt';
+                        }else{
+                            fileClass = 'iconfont icon-icon--';
+						}
+
+                            str+='<li class="libg" memory="'+e.content.size+'" fileUrl="'+e.content.url+'" fileForm="'+e.sourceName+'" fileTime="'+e.createTime+'">'+
+                            '<div class="fileImg"><i class="'+fileClass+'"></i><img src="" alt=""></div>'+
+                            '<div class="fileTitle"><h5 class="ellipsis">'+e.content.fileName+'</h5></div>'+
+                            '</li>';
+
+                    });
+                    $("#userFile ul").append(str);
+                }
+            },
+            error: function(){
+
+            }
+        });
+	}
+
+    //通讯录详情信息
+    function userXiangqin(type,id,src,name,data_p,data_email){
+        $('#user_xq').empty();
+
+        $('<p class="avatar"><img src="'+src+'" alt=""></p>'+
+            '<div class="nickname_area">'+
+            '<h4 class="nickname">'+name+'</h4>'+
+            '<i class="ng_class"></i>'+
+            '</div>'+
+            '<p class="signature">电话：'+data_p+'</p>'+
+            '<div class="meta_area">'+
+            '<div class="meta_item">'+
+//            '<label class="label" for="">邮箱：</label>'+
+            '<p class="ellipsis">邮箱：'+data_email+'</p>'+
+            '</div>'+
+//				'<div class="meta_item">'+
+//					'<label class="label" for="">地区：</label>'+
+//					'<p class="ellipsis"></p>'+
+//				'</div>'+
+            '</div>'+
+            '<div class="action_area">'+
+            '<a href="javascript:;" class="button" dataId="'+id+'" dataType="'+type+'">发消息</a>'+
+            '</div>').appendTo($('#user_xq'));
+
+    }
+    //群组详情信息
+    function userGroupXiangqin(type,id,src,name){
+        $('#user_xq').empty();
+
+        $('<p class="avatar"><img src="'+src+'" alt=""></p>'+
+            '<div class="nickname_area">'+
+            '<h4 class="nickname">'+name+'</h4>'+
+            '<i class="ng_class"></i>'+
+            '</div>'+
+//            '<p class="signature">电话：'+data_p+'</p>'+
+//            '<div class="meta_area">'+
+//            '<div class="meta_item">'+
+//            '<label class="label" for="">邮箱：</label>'+
+//            '<p class="ellipsis">'+data_email+'</p>'+
+//            '</div>'+
+//				'<div class="meta_item">'+
+//					'<label class="label" for="">地区：</label>'+
+//					'<p class="ellipsis"></p>'+
+//				'</div>'+
+//            '</div>'+
+            '<div class="action_area">'+
+            '<a href="javascript:;" class="button" dataId="'+id+'" dataType="'+type+'">发消息</a>'+
+            '</div>').appendTo($('#user_xq'));
+
+    }
+
+
+    //上传文件夹
+    function ajaxFileUpload() {
+    	var fileObj = document.getElementById("file_submit").files[0]; // js 获取文件对象
+        if (typeof (fileObj) == "undefined" || fileObj.size <= 0) {
+//            alert("请选择文件");
+            return;
+        }
+		
+        var str='<li class="clearfix fileImgLoading">'+
+            '<div class="answerHead"><img src="'+userIcon+'"></div>'+
+            '<div class="answers" style="padding: 2px;"><img class="jiao" src="images/icon/masker01.png"><div style="width: 120px;height: 120px;text-align: center;line-height: 120px;"><i class="fa fa-spinner fa-pulse" style="font-size: 40px;text-align: center;line-height: 120px;"></i></div></div>'+
+            '</li>';
+       //判断上传的文件类型
+        var typeu;
+        var regex = /^.*?\.(jpg|png|jpeg|bmp|gif)$/;
+        var matchdFlag = regex.test(fileObj.name);
+		if(matchdFlag){
+		    if(activeType == 1){
+                typeu = '12';
+			}else if(activeType == 2){
+                typeu = '22';
+			}
+
+		}else{
+            if(activeType == 1){
+                typeu = '15';
+            }else if(activeType == 2){
+                typeu = '25';
+            }
+		}
+        var date = new Date();
+    	var time = date.getTime();
+        if(time -timeStr > 30*60*1000){
+     		  $('#sayCon').find('.RightCont').find('.newsList').append("<div class='sayclass'>"+ formatDate(new Date())+"</div>");  
+        }
+        timeStr = time;
+        $('#sayCon').find('.RightCont').find('.newsList').append(str);
+
+        var formFile = new FormData();
+        formFile.append("action", "UploadVMKImagePath");  
+        formFile.append("file", fileObj); //加入文件对象
+        formFile.append("typeu",typeu);
+        //第二种 ajax 提交
+        var data = formFile;
+        $.ajax({
+            url: postUrl+'upload/uploadFile_jsonp',
+            data: data,
+            type: "post",
+            dataType: "json",
+            cache: false,//上传文件无需缓存
+            processData: false,//用于对data参数进行序列化处理 这里必须false
+            contentType: false, //必须
+            success: function (result) {
+            	
+                   // var jsonObj = $.parseJSON(result);
+                	var jsonObj = result;
+                    var filename = jsonObj.filename;
+                    var path = jsonObj.path;
+                    var size = jsonObj.size;
+                    var typeu = jsonObj.typeu;
+                    sendMessage_file(typeu,path,filename,size);
+            },
+            error: function ( e)//服务器响应失败处理函数
+            {
+                console.log(e);
+            }
+        })
+  
+    }
+
+
+	 //--------模板样式------
+     //通讯列表 详情模板
+     function userXiangqin2(){
+         $('#user_xq').empty();
+         var userName = "fengye";
+         $(`<p class="avatar"><img src="" alt=""></p>
+             <div class="nickname_area">
+             <h4 class="nickname">userName</h4>
+             <i class="ng_class"></i>
+             </div>
+             <p class="signature">nnnnnnnnnnn</p>
+             <div class="meta_area">
+             <div class="meta_item">
+             <label class="label" for="">备注：</label>
+             <p class="ellipsis">是是是</p>
+             </div>
+             <div class="meta_item">
+             <label class="label" for="">地区：</label>
+             <p class="ellipsis">的点点滴滴多</p>
+             </div>
+             </div>
+             <div class="action_area">
+             <a href="javascript:;" class="button">发消息</a>
+             </div>
+         `).appendTo($('#user_xq'));
+     }
+
+     //模糊查询 下拉联系人 模板样式
+	function contactHtml(datatype,dataid,imgsrc,name){
+        let str = '';
+        str = '<li class="itemLi" dataType="'+datatype+'" dataId="'+dataid+'">'+
+                 	'<div class="itemLeft"><img src="'+imgsrc+'" alt=""></div>'+
+					'<div class="itemRight"><p class="ellipsis">'+name+'</p></div>'+
+			   '</li>';
+		return str;
+	}
+
+    //点击文件列表时 展示文件详情结构样式
+    function fileXqHtml(fileName,fileImg,memory,uploadUrl,fileForm,fileTime){
+        let str = '';
+        str = '<div class="fileCon">'+
+				'<div class="fileTupian"><i class="'+fileImg+'"></i></div>'+
+				'<div class="fileInfor">'+
+					'<P class="fileName ellipsis">'+fileName+'</P>'+
+					'<p class="fileBox">'+
+						'<span class="file_memory">'+memory+'</span>'+
+						'<a class="uploads" href="javascript:;" uploadSrc="'+(fileUrl+uploadUrl)+'">下载</a>'+
+					'</p>'+
+					'<p class="fileLaiyuan">'+
+					    '<span class="laiyuan">来源：'+fileForm+'</span>'+
+					    '<span class="fileTime">时间：'+fileTime+'</span>'+
+                   '</p>'+
+				'</div>'+
+			'</div>';
+        return str;
+    }
+    //上传文件夹时 展示结构样式
+    function fileHtml(fileName,memory,uploadUrl){
+        let str = '';
+        str = '<div class="fileWrap">'+
+            '<div class="fileIcon"><i class="fa fa-file-text"></i></div>'+
+            '<div class="fileXq">'+
+            '<P class="fileName ellipsis">'+fileName+'</P>'+
+            '<p class="fileBox">'+
+            '<span class="file_memory">'+memory+'</span>'+
+            '<a href="javascript:;" class="fileUpload" fileUpload="'+(fileUrl+uploadUrl)+'">下载</a>'+
+            '</p>'+
+            '</div>'+
+            '</div>'
+        ;
+        return str;
+    }
+
+     //-----建立websocket连接----
+	var UrlParams = iFunc.UrlParse();
+	//var wsid = UrlParams.wsid;
+	var websocket = null;
+	var wsid=$("#userId").val();
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        websocket = new WebSocket(wsUrl+wsid);
+    }
+    else {
+        alert('当前浏览器 Not support websocket')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function () {
+        setMessageInnerHTML("WebSocket连接发生错误");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function () {
+        setMessageInnerHTML("WebSocket连接成功");
+        console.log("WebSocket连接成功");
+    };
+
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
+    	//alert(event.data);
+        setMessageInnerHTML(event.data);
+        receiveMessage(event.data);//接受返回的数据
+    };
+
+    //连接关闭的回调方法
+    websocket.onclose = function () {
+        setMessageInnerHTML("WebSocket连接关闭");
+        console.log("WebSocket连接关闭");
+    };
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
+        closeWebSocket();
+    };
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML) {
+    	
+    	var innerHTML_Context = innerHTML.replace(/\n/g,"<br/>");
+    	innerHTML_Context = '<div style="background-color:#eee;margin: 1px;">' + innerHTML_Context + '</div>';
+        document.getElementById('message').innerHTML += innerHTML_Context + '<br/>';
+        
+    }
+
+    //关闭WebSocket连接
+    function closeWebSocket() {
+        websocket.close();
+    }
+
+
+    //拖拽框的头部框实现自由拖拽
+    $(function(){
+    	  //移动窗口的步骤
+    	  //1、按下鼠标左键
+    	  //2、移动鼠标
+    	  $('.drag').mousedown(function(e){
+    	    // e.pageX
+    	    var positionDiv = $(this).offset();
+    	    var distenceX = e.pageX - positionDiv.left;
+    	    var distenceY = e.pageY - positionDiv.top;
+    	    //alert(distenceX)
+    	    // alert(positionDiv.left);
+    	    $(document).mousemove(function(e){
+    	      var x = e.pageX - distenceX;
+    	      var y = e.pageY - distenceY;
+    	      if(x<0){
+    	        x=0;
+    	      }else if(x>$(document).width()-$('#charFrame').outerWidth(true)){
+    	        x = $(document).width()-$('#charFrame').outerWidth(true);
+    	      }
+    	      if(y<0){
+    	        y=0;
+    	      }else if(y>$(document).height()-$('#charFrame').outerHeight(true)){
+    	        y = $(document).height()-$('#charFrame').outerHeight(true);
+    	      }
+    	      $('#charFrame').css({
+    	        'left':x+'px',
+    	        'top':y+'px'
+    	      });
+    	    });
+    	    $(document).mouseup(function(){
+    	      $(document).off('mousemove');
+    	    });
+    	  });
+    	});
+    
+ 	//绑定回车事件 发送
+   	document.onkeydown = function(e){
+	     if(!e){
+	         e = window.event;
+	     }
+	     if((e.keyCode || e.which) == 13){
+			 sendMessage();
+             $('#dope').val('');
+             $('#dope').focus();
+             e.preventDefault();
+	     }
+	};
+
+	//$.parseHTML( html ); 不会执行脚本代码
+	 // $.parseHTML( html,true ); 会执行脚本代码
+
+</script>
+
+</body>
+</html>

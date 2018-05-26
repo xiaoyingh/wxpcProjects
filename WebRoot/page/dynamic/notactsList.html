@@ -1,0 +1,35 @@
+<#if list?exists && list?size gt 0>
+    <ul class="noticeList item">
+        <#list list as item>
+            <li class="fileli cursor" noticId="${item.id}" readStatus="${item.readstatus}" data-toggle="modal">
+                <div class="notic_top">
+
+                    <h4 class="notice_title ellipsis">${item.title}</h4>
+                    <#if (item.readstatus==0)>
+                        <span class="notice_read notice_unread">未读</span>
+                    <#else>
+                        <span class="notice_read">已读</span>
+                    </#if>
+                    <span class="notice_time">${item.time}</span>
+                    <span class="notice_author">发布人：${item.author}</span>
+                </div>
+                <#if item.content??>
+                    <div class="notic_bottom ellipsis">${item.content}</div>
+                <#else>
+                    <div class="notic_bottom ellipsis"></div>
+                </#if>
+            </li>
+
+        </#list>
+    </ul>
+    <#else>
+        <div style='padding: 10px; border: 1px #ccc dashed; margin: auto; margin: 10px; margin-bottom: 30px; color: #1953a6; font-size: 14px; font-weight: bold; text-align: center;float: left;width:99%;'>暂无相关信息</div>
+
+</#if>
+<script>
+    function nofind(){
+        var img=event.srcElement;
+        img.src="img/avatar-4.jpg";
+        img.onerror=null; // 控制不要一直跳动
+    }
+</script>

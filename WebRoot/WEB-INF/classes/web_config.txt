@@ -1,0 +1,6 @@
+devMode = true
+
+#APP服务IP和端口
+#本地服务地址
+appServerIpPort=http://103.36.29.130:9001/im
+#appServerIpPort=http://localhost:8080/WG_TJ_IM

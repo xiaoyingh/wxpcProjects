@@ -1,0 +1,445 @@
+/*头像和退出列表样式*/
+/*头像隐藏信息板块样式*/
+.interImg{
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    z-index: 100;
+    outline: none;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.1);
+    -moz-box-shadow: rgba(0,0,0,.1) 0 5px 10px;
+    -webkit-box-shadow: rgba(0,0,0,.1) 0 5px 10px;
+}
+.interImg .profile_mini{
+    z-index: 500!important;
+    width: 220px;
+}
+.interImg .profile_mini .profile_mini_hd .avatar{
+    width: 220px;
+    height: 220px;
+    padding: 10px;
+}
+.interImg .profile_mini_hd .avatar .img {
+    width: 200px;
+    height: 200px;
+    display: block;
+}
+.interImg .profile_mini .profile_mini_bd{
+    padding: 20px;
+    min-height: 74px;
+}
+.profile_mini_bd .nickname_area{
+    height: 20px;
+    margin-bottom: 8px;
+}
+.profile_mini_bd .nickname{
+    font-weight: 400;
+    font-size: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 110px;
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+.profile_mini_bd i{
+    display: inline-block;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+}
+.profile_mini_bd .talck{
+    float: right;
+}
+.profile_mini_bd .meta_area{
+
+}
+.profile_mini_bd .meta_item{
+    overflow: hidden;
+    height: 20px;
+}
+.profile_mini_bd .meta_item .label_text {
+    float: left;
+    font-size: 12px;
+    width: 40px;
+    height: 20px;
+    line-height:20px;
+    color: #888;
+    margin-right: 10px;
+}
+.profile_mini_bd .meta_item p{
+    float: left;
+    font-size: 12px;
+    color: #888;
+    width: 105px;
+    height: 20px;
+    line-height:20px;
+    overflow: hidden;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+/*退出列表隐藏版块样式*/
+#mmpop_system_menu{
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    z-index: 99;
+    outline: none;
+}
+#mmpop_system_menu .dropdown_menu {
+    background-color: #fff;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #d6d6d6;
+    box-shadow: 2px 3px 10px rgba(0,0,0,.1);
+    -moz-box-shadow: rgba(0,0,0,.1) 2px 3px 10px;
+    -webkit-box-shadow: rgba(0,0,0,.1) 2px 3px 10px;
+    min-width: 125px;
+}
+.dropdown_menu li{
+    border-bottom: 1px solid #f1f1f1;
+}
+.dropdown_menu li i{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    lin-height:30px;
+}
+.dropdown_menu li a {
+    display: inline-block;
+    width: 90px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    padding: 8px;
+    text-align: left;
+}
+
+
+
+/*搜索框样式*/
+.search_bar{
+    position: relative;
+    width: 244px;
+    margin: 0 auto 6px;
+}
+.search_bar .search_icon{
+    display: block;
+    position: absolute;
+    z-index: 101;
+    top: 1px;
+    width: 30px;
+    height:30px;
+    color: #ffffffbd;
+    text-align: center;
+    font-size: 16px;
+    line-height:30px;
+    font-weight: normal;
+}
+.search_bar .search_text{
+    display: inline-block;
+    width: 244px;
+    height: 32px;
+    line-height: 32px;
+    border: 0;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    background-color: #0a465f;
+    color: #fff;
+    padding-left: 30px;
+    font-size: 12px;
+    border: 1px solid rgb(55,103,124);
+}
+.inputBox textarea{
+    padding-left: 20px;
+}
+
+/*模糊查询下拉框样式*/
+.recommendation{
+    background: #33363b;
+    width: 244px;
+    top: 36px;
+    left: 0;
+    box-shadow: 0 0 10px #2a2a2a;
+    -moz-box-shadow: 0 0 10px #2a2a2a;
+    -webkit-box-shadow: 0 0 10px #2a2a2a;
+    /*border-radius: 2px;*/
+    /*-moz-border-radius: 2px;*/
+    /*-webkit-border-radius: 2px;*/
+}
+.mmpop{
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    z-index: 99;
+    top: 34px;
+    left: 0;
+    outline: none;
+    max-height: 420px;
+    overflow: auto;
+}
+.mmpop .contacts .searchContact,.mmpop .contacts .searchGroup{
+    display: none;
+}
+.contacts {
+    overflow: hidden!important;
+    padding: 0!important;
+    position: relative;
+}
+.contacts .itemLi{
+    padding: 10px 9px;
+    height: 51px;
+    border-bottom: 1px solid #0a465f;
+    background: #144e66;
+    cursor: pointer;
+}
+.contacts .itemActive{
+    background: #395563f0;
+}
+.contacts .itemLi .itemLeft{
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+}
+.contacts .itemLi .itemLeft img{
+    width: 30px;
+    height: 30px;
+}
+.contacts .itemLi .itemRight{
+    float: left;
+    width: 160px;
+    height: 30px;
+}
+.contacts .itemLi .itemRight p{
+    width: 160px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+}
+.contacts h6{
+    height: 31px;
+    line-height: 30px;
+    border-bottom: 1px solid #0a465f;
+    background: #144e66;
+    padding: 0 10px;
+    color: #fff;
+}
+
+/*发送通知消息 弹出框样式*/
+.modal-body form{
+    width: 100%;
+    min-height: 150px;
+}
+.modal-body form label{
+    float: left;
+    width: 20%;
+    height: 30px;
+    line-height: 30px;
+    text-align: right;
+}
+.modal-body form input{
+    float: left;
+    width: 70%;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+}
+.modal-body form textarea{
+    float: left;
+    width: 70%;
+    height: 160px;
+    line-height: 26px;
+    padding: 5px;
+}
+.modal-body form .notice_persons{
+    float: left;
+    width: 70%;
+    min-height: 80px;
+}
+.modal-body form .allChecked{
+    float: left;
+    width: 70%;
+    /*margin-left: 20%;*/
+    height: 30px;
+}
+.modal-body form .notice_persons p,.modal-body form .allChecked p{
+    float: left;
+    width: 130px;
+    padding: 5px;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 5px;
+}
+.modal-body form .notice_persons p input[type=checkbox],.modal-body form .allChecked p input[type=checkbox]{
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+.modal-body form .notice_persons p span,.modal-body form .allChecked p span{
+    float: left;
+    padding: 0 5px;
+    height: 20px;
+    line-height: 20px;
+    width: 100px;
+}
+/*通知信息弹出框详情样式*/
+.notice_modal{
+    width: 100%;
+    height: auto;
+}
+.notice_modal .n_m_title{
+    width: 100%;
+    height: 30px;
+    line-height:30px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.notice_modal .n_m_time{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #666;
+}
+.notice_modal .n_m_content{
+    width: 100%;
+    min-height: 100px;
+    line-height: 30px;
+    text-indent: 20px;
+    margin-bottom: 30px;
+}
+.modal-footer{
+    text-align: center;
+}
+.modal-title{
+    border-left: 5px solid #337ab7;
+}
+
+/*联系人 群组样式*/
+.Group_list{
+    position: relative;
+    width: 100%;
+    height: 62px;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    border-top: 1px solid #0a465f;
+    color: #fff;
+    font-size: 14px;
+}
+.Group_list .num_logo{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30%;
+    height: 60px;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+}
+.Group_list .num_logo img{
+    width: 40px;
+    height: 40px;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border-radius: 50%;
+}
+.Group_list .right_name{
+    position: absolute;
+    left: 30%;
+    top: 0;
+    width: 70%;
+    height: 60px;
+}
+.Group_list .num_name {
+    font-size: 14px;
+    color: #fff;
+    width: 160px;
+    height: 60px;
+    line-height: 60px;
+}
+
+/*弹出框样式*/
+#noticeSubmit .row{
+    margin-bottom: 10px;
+}
+#noticeSubmit .row label{
+    padding-right: 20px;
+}
+
+/*图片预览下载样式*/
+.imgmodal{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    background: rgba(0,0,0,0.3);
+    overflow: auto;
+}
+.imgmodal .imgUploadBox{
+    width: 600px;
+    height: 500px;
+    margin: 100px auto;
+}
+.imgUploadBox .imgClost{
+    height: 40px;
+    padding: 5px;
+}
+.imgUploadBox .imgClost .closeImg{
+    float: right;
+    width: 50px;
+    height: 30px;
+    line-height:30px;
+    font-size: 28px;
+    color: #ccc;
+    text-align: right;
+    cursor: pointer;
+}
+.imgUploadBox .imgCon{
+    height: 400px;
+    margin-bottom: 10px;
+}
+.imgUploadBox .imgCon img{
+    width: 100%;
+    height: 100%;
+}
+.imgUploadBox .imgFoot{
+    width: 100%;
+    height: 40px;
+}
+.imgUploadBox .imgFoot .imgUploadWrap{
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+}
+.imgUploadBox .imgFoot .imgUploadWrap a{
+    display: block;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+}
+.imgUploadBox .imgFoot .imgUploadWrap a i{
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    color: #333;
+}

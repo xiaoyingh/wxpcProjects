@@ -1,0 +1,125 @@
+
+.Input_Box {
+    width: 100%;
+    min-height: 160px;
+    border: 1px solid #ccc;
+    transition: border linear .2s, box-shadow linear .5s;
+    -moz-transition: border linear .2s, -moz-box-shadow linear .5s;
+    -webkit-transition: border linear .2s, -webkit-box-shadow linear .5s;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    overflow: hidden;
+    -moz-box-shadow: 0 0 5px #ccc;
+    -webkit-box-shadow: 0 0 5px #ccc;
+    box-shadow: 0 0 5px #ccc;
+}
+
+.Input_Foot {
+    width: 100%;
+    height: 35px;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+    position: relative;
+    bottom: 0;
+}
+
+/*.imgBtn:active {*/
+    /*margin-top: 9px;*/
+/*}*/
+
+.imgBtn:hover {
+    background-position: 0 -31px
+}
+
+.faceDiv,.facebox {
+    width: 450px;
+    border: 1px solid #dedede;
+    position: absolute;
+    left: 5px;
+    top: -153px;
+    display: none;
+    background-color: #fff;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    border-bottom: 0;
+}
+
+.faceDiv> .emoji_container >section >._img img {
+    border: 1px solid #ccc;
+    float: left;
+    max-width: 48px;
+    max-height: 48px;
+    margin-left: -1px;
+    margin-top: -1px;
+    position: relative;
+    cursor: pointer;
+}
+
+.faceDiv>img:hover {
+    background-color: #efefef;
+}
+
+.faceDiv>img:active {
+    padding: 4px 3px 2px 3px;
+}
+
+.emoji_tab {
+    display: none;
+    position: relative;
+    height: 2em;
+    line-height: 2em;
+    white-space: nowrap;
+    overflow-x: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f2f2f2;
+    padding: 5px 10px;
+}
+
+.emoji_tab a {
+    display: inline-block;
+    text-decoration: none;
+    height: 1.6em;
+    line-height: 1.5em;
+    padding: .2em .5em;
+    color: #333;
+    font-size: 12px;
+    /*box-shadow: 1px 1px 3px gray;*/
+    border-top-left-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    -webkit-border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -webkit-border-top-right-radius: 4px;
+}
+
+.emoji_container {
+    height: 150px;
+    padding: .5em;
+    overflow: auto;
+}
+
+.emoji_container section {
+    display: none;
+}
+
+._img {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    padding: 3px;
+}
+._img img{
+    width: 30px;
+    height: 30px;
+}
+.active {
+    background-color: white;
+}

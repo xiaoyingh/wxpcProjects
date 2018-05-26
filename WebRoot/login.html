@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate" />
+    <meta http-equiv="expires" content="0" />
+
+    <title>网络应急传输系统</title>
+    <link rel="stylesheet" type="text/css" href="comment/bootstrap.css"/>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			html {
+				height: 100%;
+			}
+			
+			body {
+				margin: 0;
+				padding: 0;
+				min-width: 1360px;
+				overflow: auto;
+				height: 100%;
+				background: url("images/login.jpg") no-repeat 50%;
+				background-size: cover;
+			}
+			
+			#login {
+				width: 646px;
+				height: 836px;
+				margin: 0 auto;
+				position: relative;
+				padding-top: 100px;
+				/* background: url(images/login_bg.jpg) no-repeat; */
+			}
+			#login .loginMask{
+				width: 646px;
+				height: 736px;
+				background: #fff;
+				opacity: 0.2;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				border-radius: 5px;
+				position: absolute;
+				left: 0;
+				top: 100px;
+				z-index: -1;
+			}
+			
+			#login_box {
+				width: 646px;
+				height: 736px;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				border-radius: 5px;
+				overflow: hidden;
+			}
+			
+			.from_ {
+				text-align: center;
+				margin-top: 100px;
+			}
+			
+			.from_ p {
+				/*color: #7e7e7e;*/
+				color: #fff;
+				text-align: center;
+				font-size: 26px;
+				margin: 0;
+				margin-top: 30px;
+			}
+			.form-group .btn{
+                width: 304px;
+				height: 50px;
+				text-shadow: 1px 1px 5px #000;
+				-webkit-box-shadow: 3px 0px 3px rgba(0,0,0,0.3);
+				-moz-box-shadow: 3px 0px 3px rgba(0,0,0,0.3);
+				box-shadow: 3px 0px 3px rgba(0,0,0,0.3);
+				border-radius:12px;
+				border:0px solid #ddd;
+				background: #238bac;
+				font-size: 22px;
+				margin: 0 auto;
+			}
+			.form-horizontal{width: 400px;margin: 50px auto 0;}
+			.form-horizontal .control-label{padding-top: 0;}
+			input:-webkit-autofill {  
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;  
+} 
+			.from_ .banquan{font-size: 14px;font-family: "宋体";color: #d6caca;}
+			.form-horizontal .form-group .user_login{
+				outline: none;
+			}
+		</style>
+
+</head>
+	<body>
+		<div id="login">
+			<div id="login_box" style="">
+				<div class="from_">
+					<img src="images/login_icon.png" />
+					<p>网络应急传输系统</p>
+					<div class="form-horizontal">
+						<div class="form-group" style="padding: 20px 0;margin: 0;border-bottom: 1px solid #dddddd;">
+							<label for="inputEmail3" class="col-sm-2 control-label"><img src="images/user_icon.png" ></label>
+							<div class="col-sm-10" style="padding: 0;">
+								<input type="text" class="form-control" id="username" placeholder="用户名" style="border:none;box-shadow: none;">
+							</div>
+						</div>
+						<div class="form-group" style="padding: 20px 0;margin: 0;border-bottom: 1px solid #dddddd;">
+							<label for="inputPassword3" class="col-sm-2 control-label"><img src="images/ps_icon.png" ></label>
+							<div class="col-sm-10" style="padding: 0;">
+								<input type="password" class="form-control" id="password" placeholder="密码" style="border:none;box-shadow: none;">
+							</div>
+						</div>
+						<span style="color: #f00;font-size: 14px;float: left;margin-left: 85px;margin-top: 20px;" id="alert">&nbsp;</span>
+						<div class="form-group" style="margin-top: 70px;">
+							<div class=" col-sm-12">
+								<button type="" class="btn btn-primary btn-block user_login" id="btn-login">登  录</button>
+							</div>
+						</div>
+					</div>
+					<!--<p class="banquan">2017-2018 北京中科闻歌科技股份有限公司 版权所有<br>京ICP备17022028号&nbsp;免责声明</p>-->
+					<p class="banquan">2017-2018 北京中科闻歌科技股份有限公司 技术支持<br></p>
+				</div>
+			</div>
+			<div class="loginMask"></div>
+		</div>
+	</body>
+	<script>
+	   $('.user_login').unbind('click').click(function (){
+	      		loginclick();
+	      });
+	  function loginclick() {
+		  var string = $("#username").val();
+		  debugger
+		  var str = $.trim(string);
+		 
+		  console.log(string,str);
+        if ($.trim($("#username").val()) == '') {
+            $("#username").focus();//当前输入框获得焦点
+				$('#alert').html("请输入用户名");
+            return false;
+        } else if ($.trim($("#password").val()) == '') {
+            $("#password").focus();
+				$('#alert').html("请输入密码");
+            return false;
+        } else {
+            var username = $.trim($("#username").val());
+            var password = $.trim($("#password").val());
+            $.post("login/login", {
+                username : username,
+                password : password
+            }, function(result) {
+               	if(result == "ok"){
+						$('#alert').html('&nbsp;');
+               		window.location.href="login/index";
+               	} else {
+						$('#alert').html("用户名或密码错误，请输入正确的用户名或密码！");
+					}
+            });
+        }
+    }
+	      
+	       $(function(){
+               var message = null;
+	       	   if (message != null && message != "") {
+                   swal({
+                       title             : null,
+                       text              : '请检查您的登录信息!',
+                       showConfirmButton : false,
+                       showCancelButton  : true,
+	                   cancelButtonText  : '确定'
+                   });
+               }
+           });
+
+	    /*    $("#loginButton").off("click").on("click", function() {
+	    	  // $("#loginForm").submit();
+	       }); */
+
+           /**回车登录**/
+		   document.onkeydown=function(event){
+               var e = event || window.event || arguments.callee.caller.arguments[0];
+	           if(e && e.keyCode==13){ // enter 键
+	               loginclick();
+	           }
+	       }; 
+
+	       /**用户名输入框获取焦点**/
+	       setTimeout(function() {
+	           try {
+	               $("#username").focus();
+	           } catch (e) {
+
+	           }
+	       }, 200);
+	       
+	      
+	    /*]]>*/
+	</script>
+</html>
